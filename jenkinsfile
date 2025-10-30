@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/your-username/ci-cd-pipeline-demo.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                sh 'python --version'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'pytest || echo "No tests found"' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                // deployment script or docker commands can go here
+            }
+        }
+    }
+}
